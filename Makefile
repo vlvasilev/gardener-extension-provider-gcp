@@ -73,7 +73,7 @@ install-requirements:
 
 .PHONY: all
 ifeq ($(VERIFY),true)
-all: verify generate install
+all: generate install
 else
 all: generate install
 endif

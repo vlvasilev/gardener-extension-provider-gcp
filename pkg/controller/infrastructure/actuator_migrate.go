@@ -26,12 +26,7 @@ import (
 
 // Migrate implements infrastructure.Actuator.
 func (a *actuator) Migrate(ctx context.Context, infra *extensionsv1alpha1.Infrastructure, cluster *controller.Cluster) error {
-	serviceAccount, err := internal.GetServiceAccount(ctx, a.Client(), infra.Spec.SecretRef)
-	if err != nil {
-		return err
-	}
-
-	tf, err := internal.NewTerraformer(a.RESTConfig(), serviceAccount, infrastructure.TerraformerPurpose, infra.Namespace, infra.Name)
+	tf, err := internal.NewTerraformer(a.RESTConfig(), infrastructure.TerraformerPurpose, infra.Namespace, infra.Name)
 	if err != nil {
 		return err
 	}
